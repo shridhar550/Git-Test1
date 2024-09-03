@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Page</title>
+</head>
+<style>
+    
+</style>
+<body style="background-color:black;color: white;">
+    <header>
+        <h1 id="cvb">Welcome to My Simple HTML Page<span style="display:none">Data container</span></h1>
+        
+    </header>
+    <div id="div_button">
+        <button style="background: red;color: rgb(13, 20, 18);height: inherit;border: 2px;padding: 10px;border-radius: 10px;" value="red" id="red">red</button>
+        <button style="background: green;color: rgb(13, 20, 18);height: inherit;border: 2px;padding: 10px;border-radius: 10px;"  value="green" id="green">green</button>
+        <button style="background: yellow;color: rgb(13, 20, 18);height: inherit;border: 2px;padding: 10px;border-radius: 10px;" value="yellow" id="yellow">yellow</button>
+        <button style="background: White;color: rgb(13, 20, 18)e;height: inherit;border: 2px;padding: 10px;border-radius: 10px;"  value="White" id="White">White</button>
+        <button style="background: orange;color: rgb(13, 20, 18);height: inherit;border: 2px;padding: 10px;border-radius: 10px;" value="orange" id="orange">orange</button>
+        <button style="background: grey;color: rgb(13, 20, 18);height: inherit;border: 2px;padding: 10px;border-radius: 10px;"  value="grey" id="grey">grey</button>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Simple HTML Page. All rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+    const buttons = document.querySelectorAll('button');
+    const body = document.querySelector('body');
+    const h1 = document.querySelector('#cvb');
+    buttons.forEach(function(button){
+        button.addEventListener('click',function(e){
+            if(e.target.id === 'red'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "green";
+            }else if(e.target.id === 'green'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "orange";
+            }else if(e.target.id === 'yellow'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "green";
+            }else if(e.target.id === 'White'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "green";
+            }else if(e.target.id === 'orange'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "green";
+            }else if(e.target.id === 'grey'){
+                body.style.backgroundColor = e.target.id;
+                h1.style.color = "orange";
+            }else{
+                body.style.backgroundColor = black;
+                h1.style.color = "White";
+            }
+        });    
+    });
+    
+</script>
+</html>
