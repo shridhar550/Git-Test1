@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Page</title>
+</head>
+<style>
+</style>
+<body style="background-color:black;color: white;align-self: center;">
+    <header>
+        <h1 id="sa">Welcome to My Simple fitnesh Club</h1>
+    </header>
+    <div>
+        <form>
+            <table style="border: 0cm;align-content: center;">
+                <tr>
+                    <td>
+                        <label>Height: </label>
+                        <input type="text" name="height" id="height">
+                    </td>
+                </tr>
+                <tr style="margin-top: 30px;">
+                    <td>
+                        <label>Whight: </label>
+                        <input type="text" name="weight" id="weight">
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        <button style="width: 200px;height: 30px;color: chocolate;border-radius: 20px;">Calculate</button>
+                    </td>
+                </tr>
+                <tr style="margin-top: 30px;">
+                    <td>
+                        <label style="color: red;font-size: 20px;" id="result"></label>
+                    </td>
+                </tr>
+                <tr style="margin-top: 30px;">
+                    <td>
+                        <label style="color: green;font-size: 20px;" id="messg"></label>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <footer>
+        <p></p>
+    </footer>
+</body>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit',function(e){
+        e.preventDefault();
+        const height = parseInt(document.querySelector('#height').value);
+        const weight = parseInt(document.querySelector('#weight').value);
+        const result = document.querySelector('#result');
+        const message = document.querySelector('#messg');
+        if(height < 0 || isNaN(height) || height === ''){
+            result.innerHTML = "please insert Valide height";
+        }else if(weight < 0 || isNaN(weight) || weight === ''){
+            result.innerHTML = "please insert valide whight";
+        }else{
+            const bmi = (weight / ((height * height)/10000)).toFixed(2);
+            result.innerHTML = bmi;
+            if(bmi  < 18.5){
+                message.innerHTML = "You are Underweight You need your Mom Help!";
+                result.message.style.color = "green";
+            }else if(bmi >= 18.5 && bmi <= 24.9){
+                message.innerHTML = "you have Normal weight Good!";
+            }else if(bmi >= 25 && bmi <= 29.9){
+                message.innerHTML = "You are Overweight you need help!";
+                message.style.color = "red";
+            }else{
+                message.innerHTML = "You are Obese Please Contact Doctor Now !!!";
+                message.style.color = "red";
+            }
+        } 
+    });
+
+    
+  
+</script>
+</html>
