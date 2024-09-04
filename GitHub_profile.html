@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub User Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ccbdbd;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgb(212, 153, 153);
+            width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-box button {
+            padding: 10px;
+            margin-left: 10px;
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background-color: #024ea1;
+        }
+
+        .profile {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .profile h2 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .profile p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .profile-stats div {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub User Search</h1>
+        <div class="search-box">
+            <input type="text" id="txtname" placeholder="Enter GitHub Username">
+            <button id="search">Search</button>
+        </div>
+        
+        <div class="profile">
+            <img id="avatar" src="" alt="User Avatar"> 
+            <p id="name"></h2>
+            <div class="profile-stats">
+                <div id="repositories"><strong>45</strong> Repositories</div>
+                <div id="followers"><strong>1.2k</strong> Followers</div>
+                <div id="following"><strong>100</strong> Following</div>
+            </div>
+            <div class="profile-stats">
+                <a  id="profile-link" href="" target="_blank" class="button">View Profile</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const searchButton = document.querySelector('#search');
+    searchButton.addEventListener('click',function(e){
+        const searchName = document.querySelector('#txtname').value;
+        const apiSerach = `https://api.github.com/users/${searchName}`;
+        console.log(apiSerach);
+        const xhr =new XMLHttpRequest();
+        xhr.open('GET',apiSerach);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                const data = JSON.parse(this.responseText); ///string to json object convert
+                // DOM data show
+                document.getElementById('avatar').src = data.avatar_url;
+                document.getElementById('name').textContent = data.name || 'No name available';
+                document.getElementById('followers').textContent = `Followers: ${data.followers}` || 'No bio available';
+                document.getElementById('following').textContent = `Following: ${data.following}` || 'No bio available';
+                document.getElementById('repositories').textContent =  `Repositories:${data.public_repos}`  || 'No bio available';
+                document.getElementById('profile-link').href = data.html_url;
+            }    
+        }  
+        xhr.send();
+    });
+</script>
+</html>
