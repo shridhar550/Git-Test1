@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Function event Practical</h1>
+        <ul id="images">
+            <li><img src="images/image1.jpg" id="rose" style="height: 200px;width: 200px;"/></li>
+            <li><img src="images/image2.jpg" id="hourse" style="height: 200px;width: 200px;"/></li>
+            <li><img src="images/image3.jpg" style="height: 200px;width: 200px;" /></li>
+            <li><img src="images/image4.jpg" id="alone" style="height: 200px;width: 200px;" /></li>
+        </ul>
+    </div>
+    <script>
+        document.querySelector('#images').addEventListener('click',function(e){
+            console.log(e.target.tagName);
+            if(e.target.tagName === 'IMG'){
+                const removeIt = e.target.parentNode;
+                removeIt.remove();
+            }
+        },false);
+    </script>
+</body>
+</html>
