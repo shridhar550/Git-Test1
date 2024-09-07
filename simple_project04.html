@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Guess the Number</h1>
+        <div class="feedback"><p>Try to Guess Number Between 1 and 100</p></div>
+        <div class="feedback"><p>You have 10 attempts to Guess</p></div>
+        <form id="guessForm">
+            <input type="text" id="guessInput" required>
+            <input type="submit" id="guess123" value="Submit Guess">
+        </form>
+        <div>
+            <div class="feedback">
+                <p id="errorMsg"></p>
+            </div>
+            <div class="feedback">
+                <p id="previous">Previous Guess</p>
+            </div>
+            <div class="feedback">
+                <p id="remain">Guess Remaing</p>
+            </div>
+            <div class="feedback">
+                <p id="fed"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        const form = document.querySelector('form');
+        let randomNumber = parseInt(Math.random() * 100 +1);
+        const userInput = document.querySelector("#guessInput");
+        const preciousGuess = document.querySelector('#previous');
+        const remainAttemplts = document.querySelector('#remain');
+        const errorMsg = document.querySelector('#errorMsg');
+
+        const guess123 = document.querySelector('#guess123');
+
+        const newgame123 = document.querySelector('#fed');
+        
+        const newButton = document.createElement('button');
+       
+        console.log(newgame123);
+
+        let preciousArray = [];
+        let numGuess = 1;
+        let playGame = true;
+
+        if(playGame){
+            form.addEventListener('click',function(e){
+                e.preventDefault();
+                validateGuess(parseInt(userInput.value));
+            });
+        }
+
+        /// validate here...
+        function validateGuess(userInput){
+            if(isNaN(userInput)){
+                //alert('Please enter Valid Number');
+            }else if(userInput < 1){
+                //alert('Please enter Number more than 1');
+            }else if(userInput > 100){
+                //alert('Please enter bellow 100 Number');
+            }else{
+                //alert();
+                if(numGuess === 10){
+                    displyGuess(userInput);
+                    displayMsg(`Game Over , Random number was ${userInput}`);
+                    endgame();
+                }else{
+                    displyGuess(userInput);
+                    checkGuess(userInput);
+                }
+            }
+        }
+
+        // msg print here...
+        function checkGuess(check){
+            if(check === randomNumber){
+                displayMsg('you win');
+                endGame();
+            }else if(check < randomNumber){
+                displayMsg('number is toooo low');
+            }else if(check > randomNumber){
+                displayMsg('number is toooo high');
+            }
+        }
+
+        // display guess....
+        function displyGuess(userInput){
+            console.log(`you are in diplsay guess ${userInput}`);
+            let arraycount = preciousArray.push(userInput);
+            if(arraycount <= 10){
+                preciousGuess.innerHTML += ` ${userInput }  `;
+                let detaone = 10 - numGuess++;
+                remainAttemplts.innerHTML = `Your attemplt left : ${detaone}`;
+            }else{ 
+                displayMsg('you complited your all Attemplt');   
+                endgame();
+            }
+        }
+
+        // display msg.....
+        function displayMsg(msg){
+            errorMsg.innerHTML = `${msg}`;
+        }
+
+        // end game
+        function endgame(){
+            userInput.value = '';
+            // userInput.setAttribute('disabled','');
+            // guess123.setAttribute('disabled','');
+            
+            
+            //newgame123.classList.add('button');
+            //newgame123.append('<button id="newGame">New Game</button>');
+            userInput.setAttribute('disabled', '');
+            newgame123.classList.add('button');
+            
+            newButton.id = 'newGame';
+            newButton.textContent = 'New Game';
+            newgame123.appendChild(newButton);
+            let playGame = false;
+            newGame();
+        }
+
+        // new game
+        function newGame(){
+            const newSlot = document.querySelector('#newGame');
+            newSlot.addEventListener('click',function(e){
+                e.preventDefault();
+                playGame = true;
+                numGuess = 1;
+                errorMsg.innerHTML = '';
+                userInput.value = '';
+                remainAttemplts.innerHTML = '';
+                preciousGuess.innerHTML ='';
+                preciousArray = [];
+                randomNumber = parseInt(Math.random() * 100 +1);
+                userInput.removeAttribute('disabled');
+                newgame123.removeChild(newButton);
+                // userInput.setAttribute('enabled','');
+                // guess123.setAttribute('enabled','');
+            });
+        }
+
+
+    </script>
+</body>
+</html>
