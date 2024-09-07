@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #110101;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .click-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgb(230, 212, 212);
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 id="demo">Screen ponting Practical</h1>
+    </div>
+
+    <script>
+        window.addEventListener('click',(e)=>{
+            const x = e.clientX;
+            const y = e.clientY;
+            const element12 = document.createElement('div');
+            element12.classList.add('click-marker');
+            element12.style.left = `${x -10}px`;  
+            element12.style.top = `${y - 10}px`; 
+            document.body.appendChild(element12);
+        });
+    </script>
+</body>
+</html>
