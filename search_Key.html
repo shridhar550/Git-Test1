@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+       
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 id="demo">Key press Practical</h1>
+    </div>
+
+    <script>
+        const demo = document.getElementById('demo');
+        window.addEventListener('keydown',(e)=>{
+            const table = `<table>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Code</th>
+                                    <th>Linus</th>
+                                </tr>
+                                <tr>
+                                    <td>${e.key === ' ' ? 'Space' : e.key}</td>
+                                    <td>${e.keyCode}</td>
+                                    <td>${e.altKey}</td>
+                                </tr>
+                                </table>`;
+            demo.innerHTML = table;
+        });
+
+    </script>
+</body>
+</html>
