@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body id="">
+    <div class="game-container">
+        <h1>Wel come To javaScript</h1>
+        <h3 id="msg">Here..</h3>
+        <div id="task1">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+    </div>
+</body>
+<script>
+
+    
+
+    let setInterval123 = null;
+        
+    const startTimer = function(){ 
+        if(setInterval123 === null){
+            setInterval123 = setInterval(displayF,1000);
+        }
+        function displayF(){
+            document.querySelector('body').style.backgroundColor = getRandomColor();
+        }
+    }
+    const stopTimer = function(){
+        document.querySelector('#msg').innerHTML = "Timer Stop Now";
+        clearInterval(setInterval123);
+        setInterval123 = null;
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }  
+    
+    document.querySelector('#start').addEventListener('click',startTimer);
+    document.querySelector('#stop').addEventListener('click',stopTimer);
+
+</script>
+</html>
